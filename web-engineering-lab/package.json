@@ -1,0 +1,15 @@
+{
+  "name": "web-engineering-lab",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "format": "prettier -- check .",
+    "start": "serve public"
+  },
+  "dependencies": {
+    "prettier": "^3.9.9",
+    "serve": "^14.2.6"
+  }
+}
