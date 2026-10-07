@@ -1,5 +1,5 @@
 function greet(name) {
-  return "Hello, {Tazmeen}!";
+  return "Hello, ${name}!";
 }
 
 document.querySelector("h1").textContent = greet("World");
