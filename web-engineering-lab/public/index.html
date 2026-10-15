@@ -7,7 +7,151 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1></h1>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- very first focusable element in the body, keyboard
+    user skip the navigation on every page load-->
+
+    <header>
+      <h1 id="greeting"></h1>
+      <nav>
+        <ul>
+          <li><a href="#schedule" aria-current="location">Office Hours</a></li>
+          <li><a href="#feedback">Send Feedback</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <!-- Office Hours Section -->
+      <section id="schedule">
+        <h2>Office Hours</h2>
+
+        <table>
+          <caption>
+            Weekly office hours
+          </caption>
+
+          <thead>
+            <tr>
+              <th scope="col">Day</th>
+              <th scope="col">Time</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>Monday</td>
+              <td>
+                <time datetime="10:00">10:00 AM</time> -
+                <time datetime="11:00">11:00 AM</time>
+              </td>
+            </tr>
+            <tr>
+              <td>Wednesday</td>
+              <td>
+                <time datetime="12:00">12:00 PM</time> -
+                <time datetime="13:00">1:00 PM</time>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Friday</td>
+              <td>
+                <time datetime="14:00">2:00 PM</time> -
+                <time datetime="15:00">3:00 PM</time>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Information Icon beside table -->
+        <figure>
+          <svg
+            role="img"
+            aria-labelledby="pin-title"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <title id="pin-title">Location pin</title>
+            <path
+              d="M12 22s8-7.2 8-13a8 8 0 1 0-16 0c0 5.8 8 13 8 13z"
+              fill="#0b3d91"
+            />
+            <circle cx="12" cy="9" r="2.5" fill="#ffffff" />
+          </svg>
+
+          <figcaption>All office hours are held in Room 214.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Decorative divider -->
+      <div class="divider">
+        <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="3" fill="#0b3d91" />
+        </svg>
+      </div>
+
+      <!-- Send Feedback Section -->
+      <section id="feedback">
+        <h2>Send Feedback</h2>
+
+        <form>
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter your name"
+            required
+          />
+
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+            aria-describedby="email-hint"
+          />
+          <span id="email-hint">We will only use this to reply to you.</span>
+
+          <fieldset>
+            <legend>Topic</legend>
+
+            <input
+              type="radio"
+              id="office-hours"
+              name="topic"
+              value="office-hours"
+            />
+            <label for="office-hours">Office Hours</label>
+
+            <input type="radio" id="website" name="topic" value="website" />
+            <label for="website">Website</label>
+
+            <input
+              type="radio"
+              id="other"
+              name="topic"
+              value="other"
+              required
+            />
+            <label for="other">Other</label>
+          </fieldset>
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+
+          <button type="submit">Submit Feedback</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <address>Contact your instructor for help.</address>
+    </footer>
 
     <script src="script.js"></script>
   </body>

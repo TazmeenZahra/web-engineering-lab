@@ -3,3 +3,26 @@ body {
   text-align: center;
   margin-top: 100px;
 }
+
+/* for keyboard focus indicator for all interactive elements */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #0b5fff;
+  outline-offset: 2px;
+}
+
+/* to hide the skip link until focussed */
+.skip-link {
+  position: absolute;
+  /* removes the link from the normal page layout */
+
+  left: -999px;
+  /* moves it off the visible screen */
+}
+
+/* moves it back to the left edge when it receives focus */
+.skip-link:focus {
+  left: 0;
+}
