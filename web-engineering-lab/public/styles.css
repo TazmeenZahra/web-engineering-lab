@@ -1,28 +1,205 @@
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  margin-top: 100px;
+/* LAB 03 */
+@layer reset, base, components, utilities;
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body,
+  h1,
+  h2,
+  p,
+  figure {
+    margin: 0;
+    /* color: var(--color-accent);   removed */
+  }
 }
 
-/* for keyboard focus indicator for all interactive elements */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible {
-  outline: 3px solid #0b5fff;
-  outline-offset: 2px;
+/* LAB 03 */
+@layer base {
+  :root {
+    color-scheme: light dark;
+
+    --space: 1rem;
+
+    --color-bg: light-dark(
+      oklch(98% 0.01 255),
+      oklch(20% 0.02 255)
+    ); /* page bacground */
+
+    --color-text: light-dark(
+      oklch(25% 0.02 255),
+      oklch(96% 0.01 255)
+    ); /* main text */
+
+    --color-accent: light-dark(
+      oklch(45% 0.18 255),
+      oklch(85% 0.08 255)
+    ); /* blue for link, heading */
+
+    --color-surface: color-mix(
+      in oklch,
+      var(--color-bg) 92%,
+      var(--color-accent)
+    );
+    /* slightly lighter surface color */
+
+    --color-border: color-mix(in oklch, var(--color-text) 55%, var(--color-bg));
+    /* subtle border color */
+
+    --color-muted: oklch(48% 0.025 250);
+    /* secondary text */
+  }
+
+  body {
+    font-family: system-ui, sans-serif;
+    line-height: 1.5;
+    /* padding: 1rem;    changed */
+    padding: var(--space);
+    color: var(--color-text);
+    background: var(--color-bg);
+  }
+
+  h1,
+  h2 {
+    color: var(--color-accent);
+  }
+
+  /* for changing h2 color in dark mode */
+  @media (prefers-color-scheme: dark) {
+    h1,
+    h2 {
+      color: oklch(85% 0.08 255);
+    }
+  }
+
+  input,
+  textarea,
+  button {
+    font: inherit;
+  }
 }
 
-/* to hide the skip link until focussed */
-.skip-link {
-  position: absolute;
-  /* removes the link from the normal page layout */
+/* LAB 01 */
+/* body { */
+/* font-family: Arial, sans-serif; */
+/* text-align: center; */
+/* margin-top: 100px; */
+/* color: var(--color-text); */
+/* background: var(--color-bg); */
+/* } */
 
-  left: -999px;
-  /* moves it off the visible screen */
+/* LAB 03 */
+@layer components {
+  /* LAB 02 */
+  /* for keyboard focus indicator for all interactive elements */
+
+  /* Accessibility rules */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 3px solid #0b5fff;
+    outline-offset: 2px;
+  }
+
+  /* to hide the skip link until focussed */
+  .skip-link {
+    position: absolute;
+    /* removes the link from the normal page layout */
+    color: var(--color-accent);
+    left: -999px;
+    /* moves it off the visible screen */
+  }
+
+  /* moves it back to the left edge when it receives focus */
+  .skip-link:focus {
+    left: 0;
+  }
+
+  /* LAB 03 */
+  /* Layout rules */
+  main {
+    max-inline-size: 60rem;
+    margin-inline: auto;
+    padding-block: 1rem;
+  }
+
+  form p {
+    margin-block: 0.5rem 1rem;
+  }
+
+  :where(nav ul li) a {
+    color: purple;
+  }
+
+  .nav-link {
+    color: darkgreen;
+  }
+
+  a[aria-current="location"] {
+    color: crimson;
+  }
+
+  /* Dark mode navigation colors */
+  @media (prefers-color-scheme: dark) {
+    .nav-link {
+      color: lightgreen;
+    }
+
+    a[aria-current="location"] {
+      color: lightcoral;
+    }
+  }
+
+  /* Spacing in table cells, New Surface token for headings */
+  /* applying borders, forming controls */
+  table,
+  fieldset,
+  input,
+  textarea {
+    border-color: var(--color-border);
+  }
+
+  th,
+  td {
+    padding: 0.5rem;
+  }
+
+  th {
+    background: var(--color-surface);
+  }
+
+  /* Submit button styling */
+  button[type="submit"] {
+    color: var(--color-bg);
+    background: var(--color-accent);
+  }
+
+  button[type="submit"]:hover {
+    background: color-mix(in oklch, var(--color-accent), black 15%);
+  }
+
+  /* SVG icon color */
+  svg {
+    color: var(--color-accent);
+  }
 }
 
-/* moves it back to the left edge when it receives focus */
-.skip-link:focus {
-  left: 0;
+@layer utilities {
+  /* reusable class for secondary text */
+  .text-muted {
+    color: #47596d;
+    /* color: var(--color-muted); updated */
+  }
+
+  /* Dark mode navigation colors */
+  @media (prefers-color-scheme: dark) {
+    .text-muted {
+      color: #d1d5db;
+    }
+  }
 }
